@@ -13,3 +13,17 @@ curl -sS -L https://$GITHUB_TOKEN@raw.githubusercontent.com/ql4b/cloudless-app/r
 
 2. Edit the `.env`
 
+3. Install serverless
+
+```
+cd app
+npm ci
+```
+
+4. Deploy 
+
+```
+npm run deploy 
+```
+
+
