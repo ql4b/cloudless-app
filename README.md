@@ -40,7 +40,6 @@ You'll see something like this:
 >functions:
 >  ip: cloudless-app-staging-ip (926 B)
 >
-```
 
 5. Test the endpoint
 
