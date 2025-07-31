@@ -1,5 +1,5 @@
 service: cloudless-app
-frameworkVersion: "3"
+frameworkVersion: "4"
 
 custom: ${file(sls/custom.yml):custom}
 
@@ -7,7 +7,7 @@ provider:
   name: aws
   stage: ${opt:stage, 'staging'}
   stackName: ${self:custom.appName}-${opt:stage, 'staging'}
-  region: ${opt:region, ${env:AWS_REGION, 'eu-central-1'}}
+  region: ${env:AWS_REGION, 'eu-central-1'}
   profile: ${env:AWS_PROFILE, 'ql4b'}
   iam: ${file(./sls/iam.yml):iam}
 
