@@ -1,4 +1,4 @@
-service: cloudless-app
+service: ${env:NAMESPACE}-${env:NAME}
 frameworkVersion: "4"
 
 custom: ${file(sls/custom.yml):custom}
