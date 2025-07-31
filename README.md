@@ -32,6 +32,7 @@ npm ci
 npm run deploy
 ```
 
+You'll see something like this:
 
 >✔ Service deployed to stack cloudless-app-staging (31s)
 >
