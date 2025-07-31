@@ -32,13 +32,13 @@ npm ci
 npm run deploy
 ```
 
-```
-✔ Service deployed to stack cloudless-app-staging (31s)
 
-endpoint: GET - https://abcdefghijk.execute-api.us-east-1.amazonaws.com/staging/ip
-functions:
-  ip: cloudless-app-staging-ip (926 B)
-
+>✔ Service deployed to stack cloudless-app-staging (31s)
+>
+>endpoint: GET - https://abcdefghijk.execute-api.us-east-1.amazonaws.com/staging/ip
+>functions:
+>  ip: cloudless-app-staging-ip (926 B)
+>
 ```
 
 ```bash
