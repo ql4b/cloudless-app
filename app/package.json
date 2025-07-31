@@ -1,0 +1,17 @@
+{
+  "name": "cloudeless-p",
+  "license": "MIT",
+  "scripts": {
+    "serverless": "./node_modules/serverless/bin/serverless.js",
+    "terraform": "cd ../; ./tf",
+    "serveless:deploy": "npm run serverless -- deploy",
+    "deploy:function": "npm run serverless -- deploy function",
+    "deploy": "npm run serverless -- deploy",
+    "logs:tail": "npm run serverless -- logs --tail"
+  },
+  "devDependencies": {
+    "serverless": "^3.38.0"
+  },
+  "dependencies": {
+  }
+}

@@ -1,0 +1,23 @@
+service: cloudless-p
+frameworkVersion: "3"
+
+custom: ${file(sls/custom.yml):custom}
+
+provider:
+  name: aws
+  stage: ${opt:stage, 'staging'}
+  stackName: ${self:custom.appName}-${opt:stage, 'staging'}
+  region: ${opt:region, 'eu-central-1'}
+  profile: ${env:AWS_PROFILE, 'ql4b'}
+  deploymentBucket:
+    name: ${self:custom.appName}-deployment-bucket-${opt:stage, 'staging'}
+  iam: ${file(./sls/iam.yml):iam}
+
+  httpApi:
+    cors: true
+  
+  environment: ${file(sls/env.yml):environment}
+  
+functions: ${file(sls/functions.yml):functions}
+
+layers: ${file(sls/layers.yml):layers}
