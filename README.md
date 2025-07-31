@@ -1,6 +1,6 @@
 # cloudless-app
 
-## quick start 
+## Quick Start
 
 1. Bootstrap
 
