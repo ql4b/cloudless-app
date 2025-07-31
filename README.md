@@ -5,8 +5,8 @@
 1. Bootstrap
 
 ```bash
-curl -sS -L https://$GITHUB_TOKEN@raw.githubusercontent.com/ql4b/cloudless-app/refs/heads/develop/bootstrap \
-    | bash -s develop
+curl -sS -L https://$GITHUB_TOKEN@raw.githubusercontent.com/ql4b/cloudless-app/refs/heads/main/bootstrap \
+    | bash -s main
 ```
 
 2. Edit the `.env`
@@ -48,5 +48,3 @@ curl -sS https://abcdefghijk.execute-api.us-east-1.amazonaws.com/staging/ip \
     | base64 -d \
     | jq 
 ```
-
-
