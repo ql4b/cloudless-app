@@ -1,0 +1,63 @@
+#!/bin/bash
+
+# Bootstrap cloudless-app into existing project
+# Usage: curl -sL https://raw.githubusercontent.com/ql4b/cloudless-app/main/bootstrap | bash
+
+set -e
+
+PROJECT_NAME=${1:-$(basename "$PWD")}
+BACKUP_FILES=("README.md" ".gitignore" ".env.example")
+REMOVE_FILES=("bootstrap" "README.md" ".env.example")
+
+echo "Bootstrapping cloudless-app for project: $PROJECT_NAME"
+
+# Backup common files
+
+
+for f in "${BACKUP_FILES[@]}"; do
+  [ -f "$f" ] && cp "$f" "$f.bak"
+done
+
+# Download and extract without git history
+if [ -n "$GITHUB_TOKEN" ]; then
+  # Private repo with token
+  curl -sL -H "Authorization: token $GITHUB_TOKEN" \
+    https://github.com/ql4b/cloudless-app/archive/refs/heads/main.tar.gz | \
+    tar --strip-components=1 -xzf -
+else
+  # Public repo
+  curl -sL https://github.com/ql4b/cloudless-app/archive/refs/heads/main.tar.gz | \
+    tar --strip-components=1 -xzf -
+fi
+
+# Setup environment (append to .env)
+{
+  echo -e "\n# cloudless-app"
+  cat .env.example
+} >> .env
+
+# if .gitignore.bak exists, append to it
+if [ -f .gitignore ]; then
+  {
+    echo -e "\n# cloudless-app"
+    cat .gitignore
+  } >> .gitignore.bak
+fi
+
+# Remove REMOVE_FILES
+for f in "${REMOVE_FILES[@]}"; do
+  rm -rf "$f"
+done
+
+# Restore common files
+for f in "${BACKUP_FILES[@]}"; do
+  [ -f "$f.bak" ] && mv "$f.bak" "$f"
+done
+
+# Add . to the $PATH
+export PATH="$(pwd):$PATH"
+echo "export PATH=\"$(pwd):$PATH\"" >> ~/.zshrc
+
+echo "✓ Cloudless app bootstrapped in current directory"
+echo "✓ Edit .env with your settings"
+echo "✓ Run: npm ci && npm run serverless"
