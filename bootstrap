@@ -5,11 +5,14 @@
 
 set -e
 
-PROJECT_NAME=${1:-$(basename "$PWD")}
+GITHUB_REF=${1-"main"}
+PROJECT_NAME=${2:-$(basename "$PWD")}
 BACKUP_FILES=("README.md" ".gitignore" ".env.example")
 REMOVE_FILES=("bootstrap" "README.md" ".env.example")
 
+
 echo "Bootstrapping cloudless-app for project: $PROJECT_NAME"
+echo "GitHub Ref: $GITHUB_REF"
 
 # Backup common files
 
@@ -22,11 +25,11 @@ done
 if [ -n "$GITHUB_TOKEN" ]; then
   # Private repo with token
   curl -sL -H "Authorization: token $GITHUB_TOKEN" \
-    https://github.com/ql4b/cloudless-app/archive/refs/heads/main.tar.gz | \
+    "https://github.com/ql4b/cloudless-app/archive/refs/heads/$GITHUB_REF.tar.gz" | \
     tar --strip-components=1 -xzf -
 else
   # Public repo
-  curl -sL https://github.com/ql4b/cloudless-app/archive/refs/heads/main.tar.gz | \
+  curl -sL "https://github.com/ql4b/cloudless-app/archive/refs/heads/$GITHUB_REF.tar.gz" | \
     tar --strip-components=1 -xzf -
 fi
 
