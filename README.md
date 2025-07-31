@@ -42,6 +42,8 @@ You'll see something like this:
 >
 ```
 
+5. Test the endpoint
+
 ```bash
 curl -sS https://abcdefghijk.execute-api.us-east-1.amazonaws.com/staging/ip \
     | base64 -d \
