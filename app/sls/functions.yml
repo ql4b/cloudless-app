@@ -1,2 +1,16 @@
 functions:
-  
+  ip:
+    runtime: provided.al2023
+    handler: bootstrap
+    architecture: arm64
+    memorySize: 2048
+    timeout: 20
+    package:
+      individually: true
+      artifact: ./artifact/function.zip
+    events:
+      - http:
+          private: false
+          path: /ip
+          method: get
+          cors: true
